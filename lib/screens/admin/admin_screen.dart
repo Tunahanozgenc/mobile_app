@@ -6,7 +6,7 @@ import '../../core/constants/app_colors.dart';
 import '../../core/services/auth_service.dart';
 import 'widgets/admin_notification_card.dart';
 import 'widgets/emergency_dialog.dart';
-import '../content/gonderi_ekle_screen.dart';
+import '../post/gonderi_ekle_screen.dart';
 
 class AdminScreen extends StatefulWidget {
   @override
