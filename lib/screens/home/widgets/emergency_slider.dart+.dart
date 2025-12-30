@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class EmergencySlider extends StatelessWidget {
+class EmergencySlider extends StatelessWidget {//acil duyuru kısmı (slider)
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
@@ -10,10 +10,10 @@ class EmergencySlider extends StatelessWidget {
           .orderBy('tarih', descending: true)
           .snapshots(),
       builder: (context, snapshot) {
-        if (!snapshot.hasData || snapshot.data!.docs.isEmpty)
+        if (!snapshot.hasData || snapshot.data!.docs.isEmpty)//veri yoksa boş ise
           return SizedBox.shrink();
 
-        var docs = snapshot.data!.docs;
+        var docs = snapshot.data!.docs; //veri değerleri tutma
         return Container(
           height: 160,
           child: PageView.builder(
@@ -28,7 +28,7 @@ class EmergencySlider extends StatelessWidget {
     );
   }
 
-  Widget _buildEmergencyCard(BuildContext context, DocumentSnapshot doc, int index) {
+  Widget _buildEmergencyCard(BuildContext context, DocumentSnapshot doc, int index) {//card yapısında veriyi gösterme
     var data = doc.data() as Map<String, dynamic>;
     return GestureDetector(
       onTap: () => Navigator.pushNamed(context, '/bildirim-detay', arguments: doc),

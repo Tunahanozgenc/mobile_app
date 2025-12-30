@@ -8,23 +8,32 @@ class BildirimlerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (currentUser == null) return Scaffold(body: Center(child: Text("Lütfen giriş yapın.")));
+    if (currentUser == null)
+      return Scaffold(body: Center(child: Text("Lütfen giriş yapın.")));
 
     return Scaffold(
       backgroundColor: Color(0xFFF8F9FD),
       appBar: AppBar(
-        title: Text("Bildirim Geçmişi", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+        title: Text(
+          "Bildirim Geçmişi",
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
         iconTheme: IconThemeData(color: Colors.black),
       ),
       body: StreamBuilder<DocumentSnapshot>(
         // 1. Kullanıcının takip listesini al
-        stream: FirebaseFirestore.instance.collection('users').doc(currentUser!.uid).snapshots(),
+        stream: FirebaseFirestore.instance
+            .collection('users')
+            .doc(currentUser!.uid)
+            .snapshots(),
         builder: (context, userSnapshot) {
-          if (!userSnapshot.hasData) return Center(child: CircularProgressIndicator());
+          if (!userSnapshot.hasData)
+            return Center(child: CircularProgressIndicator());
 
-          List<dynamic> takipListesi = userSnapshot.data!['takipEdilenler'] ?? [];
+          List<dynamic> takipListesi =
+              userSnapshot.data!['takipEdilenler'] ?? [];
 
           return StreamBuilder<QuerySnapshot>(
             // 2. Bildirim loglarını tarih sırasına göre al
@@ -33,7 +42,8 @@ class BildirimlerScreen extends StatelessWidget {
                 .orderBy('tarih', descending: true)
                 .snapshots(),
             builder: (context, logSnapshot) {
-              if (logSnapshot.connectionState == ConnectionState.waiting) return Center(child: CircularProgressIndicator());
+              if (logSnapshot.connectionState == ConnectionState.waiting)
+                return Center(child: CircularProgressIndicator());
 
               if (!logSnapshot.hasData || logSnapshot.data!.docs.isEmpty) {
                 return _buildEmptyState();
@@ -71,15 +81,22 @@ class BildirimlerScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.03), blurRadius: 10)],
+        boxShadow: [
+          BoxShadow(color: Colors.black.withOpacity(0.03), blurRadius: 10),
+        ],
       ),
       child: ListTile(
         contentPadding: EdgeInsets.all(16),
         leading: Container(
           padding: EdgeInsets.all(10),
-          decoration: BoxDecoration(color: statusColor.withOpacity(0.1), shape: BoxShape.circle),
+          decoration: BoxDecoration(
+            color: statusColor.withOpacity(0.1),
+            shape: BoxShape.circle,
+          ),
           child: Icon(
-            durum == 'Çözüldü' ? Icons.check_circle_rounded : Icons.pending_rounded,
+            durum == 'Çözüldü'
+                ? Icons.check_circle_rounded
+                : Icons.pending_rounded,
             color: statusColor,
           ),
         ),
@@ -97,9 +114,12 @@ class BildirimlerScreen extends StatelessWidget {
               children: [
                 Icon(Icons.access_time, size: 12, color: Colors.grey),
                 SizedBox(width: 4),
-                Text(_formatDate(log['tarih']), style: TextStyle(fontSize: 11, color: Colors.grey)),
+                Text(
+                  _formatDate(log['tarih']),
+                  style: TextStyle(fontSize: 11, color: Colors.grey),
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),
@@ -111,10 +131,24 @@ class BildirimlerScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.notifications_none_rounded, size: 70, color: Colors.grey[300]),
+          Icon(
+            Icons.notifications_none_rounded,
+            size: 70,
+            color: Colors.grey[300],
+          ),
           SizedBox(height: 16),
-          Text("Henüz bir güncelleme yok", style: TextStyle(color: Colors.grey[600], fontSize: 16, fontWeight: FontWeight.w600)),
-          Text("Takip ettiğin olaylar değişince burada göreceksin", style: TextStyle(color: Colors.grey[400], fontSize: 13)),
+          Text(
+            "Henüz bir güncelleme yok",
+            style: TextStyle(
+              color: Colors.grey[600],
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          Text(
+            "Takip ettiğin olaylar değişince burada göreceksin",
+            style: TextStyle(color: Colors.grey[400], fontSize: 13),
+          ),
         ],
       ),
     );

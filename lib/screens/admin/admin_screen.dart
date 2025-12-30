@@ -8,7 +8,7 @@ import 'widgets/admin_notification_card.dart';
 import 'widgets/emergency_dialog.dart';
 import '../post/gonderi_ekle_screen.dart';
 
-class AdminScreen extends StatefulWidget {
+class AdminScreen extends StatefulWidget {//admin sayfası
   @override
   _AdminScreenState createState() => _AdminScreenState();
 }
@@ -22,9 +22,9 @@ class _AdminScreenState extends State<AdminScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFF8F9FD),
       body: CustomScrollView(
-        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,//Ekranı kaydırdığında klavyeyi otomatik kapatır. (özel işlem eklendi)
         slivers: [
-          // 1. APPBAR
+          //APPBAR
           SliverAppBar(
             expandedHeight: 120,
             pinned: true,
@@ -74,7 +74,7 @@ class _AdminScreenState extends State<AdminScreen> {
             ),
           ),
 
-          // 2. BİLDİRİM LİSTESİ
+          //BİLDİRİM LİSTESİ
           StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
                 .collection('bildirimler')
@@ -119,7 +119,7 @@ class _AdminScreenState extends State<AdminScreen> {
       ),
 
       // FAB
-      floatingActionButton: SpeedDial(
+      floatingActionButton: SpeedDial(//admin panelinde bildirim acil durum eklemek için sağ alt köşede bulunan buton
         icon: Icons.add_rounded,
         backgroundColor: AppColors.primary,
         children: [

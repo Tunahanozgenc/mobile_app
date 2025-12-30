@@ -86,7 +86,7 @@ class _SifremiUnuttumScreenState extends State<SifremiUnuttumScreen> {
                 SizedBox(height: 10),
                 Text("Hesabına bağlı e-posta adresini gir, sana sıfırlama bağlantısını gönderelim.", textAlign: TextAlign.center, style: TextStyle(color: AppColors.textSecondary, fontSize: 16)),
                 SizedBox(height: 40),
-                StumediaTextField(controller: _emailController, hintText: 'E-posta Adresin', icon: Icons.email_outlined, keyboardType: TextInputType.emailAddress),
+                mobileTextField(controller: _emailController, hintText: 'E-posta Adresin', icon: Icons.email_outlined, keyboardType: TextInputType.emailAddress),
                 SizedBox(height: 20),
                 SizedBox(
                   height: 56,

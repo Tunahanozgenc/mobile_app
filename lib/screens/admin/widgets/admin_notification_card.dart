@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class AdminNotificationCard extends StatelessWidget {
+class AdminNotificationCard extends StatelessWidget {//bildirim için
   final DocumentSnapshot doc;
   const AdminNotificationCard({required this.doc});
 
@@ -73,7 +73,7 @@ class AdminNotificationCard extends StatelessWidget {
               Icon(Icons.access_time_rounded, size: 14, color: Colors.grey[600]),
               const SizedBox(width: 4),
               Text(
-                _formatDate(data['createdAt']),
+                _formatDate(data['createdAt']),//tarih verisi için
                 style: TextStyle(fontSize: 12, color: Colors.grey[600]),
               ),
             ],
@@ -88,7 +88,7 @@ class AdminNotificationCard extends StatelessWidget {
                 const Divider(),
                 const SizedBox(height: 10),
                 Text(
-                  "📝 TAM AÇIKLAMA",
+                  "TAM AÇIKLAMA",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11, color: Colors.grey[500], letterSpacing: 1),
                 ),
                 const SizedBox(height: 6),
@@ -101,7 +101,7 @@ class AdminNotificationCard extends StatelessWidget {
                 const SizedBox(height: 20),
 
                 Text(
-                  "⚙️ DURUMU GÜNCELLE",
+                  "DURUMU GÜNCELLE",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 11, color: Colors.grey[500], letterSpacing: 1),
                 ),
                 const SizedBox(height: 10),
@@ -109,7 +109,7 @@ class AdminNotificationCard extends StatelessWidget {
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: SegmentedButton<String>(
-                      segments: [
+                      segments: [//durum güncellemesi için
                         ButtonSegment(value: "Açık", label: const Text("Açık"), icon: const Icon(Icons.radio_button_unchecked, size: 16)),
                         ButtonSegment(value: "İnceleniyor", label: const Text("İnceleme"), icon: const Icon(Icons.hourglass_empty, size: 16)),
                         ButtonSegment(value: "Çözüldü", label: const Text("Çözüldü"), icon: const Icon(Icons.check_circle_outline, size: 16)),
@@ -124,7 +124,7 @@ class AdminNotificationCard extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(height: 24),
+                const SizedBox(height: 24),//boşluk ayarlamak için
                 Row(
                   children: [
                     Expanded(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/constants/app_colors.dart';
 
-class StumediaTextField extends StatelessWidget {
+class mobileTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final IconData icon;
@@ -10,7 +10,7 @@ class StumediaTextField extends StatelessWidget {
   final VoidCallback? onVisibilityToggle;
   final TextInputType keyboardType;
 
-  const StumediaTextField({
+  const mobileTextField({
     Key? key,
     required this.controller,
     required this.hintText,

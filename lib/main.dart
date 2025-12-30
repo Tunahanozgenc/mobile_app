@@ -3,12 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobile_app/screens/notifications/bildirim_detay_screen.dart';
 import 'package:mobile_app/screens/post/gonderi_ekle_screen.dart';
-
-// --- CORE ---
 import 'core/theme/app_theme.dart';
 import 'core/services/auth_service.dart';
-
-// --- SCREENS ---
 import 'screens/auth/giris_screen.dart';
 import 'screens/auth/kayit_ol_screen.dart';
 import 'screens/auth/sifremi_unuttum_screen.dart';
@@ -32,7 +28,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       home: AuthWrapper(),
-      routes: {
+      routes: {//sayfalar yönlendirme
         '/giris': (context) => GirisScreen(),
         '/kayit': (context) => KayitOlScreen(),
         '/sifremi-unuttum': (context) => SifremiUnuttumScreen(),
@@ -46,7 +42,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class AuthWrapper extends StatelessWidget {
+class AuthWrapper extends StatelessWidget { // admin giriş işlemi olup olmadığı kontrol ediliyor firebase
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<User?>(
@@ -60,16 +56,18 @@ class AuthWrapper extends StatelessWidget {
             future: AuthService().getUserRole(snapshot.data!),
             builder: (context, roleSnapshot) {
               if (roleSnapshot.connectionState == ConnectionState.waiting) {
-                return Scaffold(body: Center(child: CircularProgressIndicator()));
+                return Scaffold(
+                  body: Center(child: CircularProgressIndicator()),
+                );
               }
               if (roleSnapshot.hasData && roleSnapshot.data == 'admin') {
-                return AdminScreen();
+                return AdminScreen();//admin ise admin sayfasına yönlendirme
               }
               return AnaIskeletScreen();
             },
           );
         }
-        return GirisScreen();
+        return GirisScreen();//admin değilse giriş sayfasına yönlendirme normal kullanıcı
       },
     );
   }

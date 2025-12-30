@@ -95,7 +95,7 @@ class _KayitOlScreenState extends State<KayitOlScreen> {
                 SizedBox(height: 30),
 
                 // Ad Soyad
-                StumediaTextField(controller: _nameController, hintText: 'Ad Soyad', icon: Icons.person_outline),
+                mobileTextField(controller: _nameController, hintText: 'Ad Soyad', icon: Icons.person_outline),
                 SizedBox(height: 16),
 
                 // --- BİRİM SEÇİMİ (DROPDOWN) ---
@@ -128,9 +128,9 @@ class _KayitOlScreenState extends State<KayitOlScreen> {
                 ),
                 SizedBox(height: 16),
 
-                StumediaTextField(controller: _emailController, hintText: 'E-posta Adresi', icon: Icons.email_outlined, keyboardType: TextInputType.emailAddress),
-                StumediaTextField(controller: _passwordController, hintText: 'Şifre', icon: Icons.lock_outline, isPassword: true, isVisible: _isPasswordVisible, onVisibilityToggle: () => setState(() => _isPasswordVisible = !_isPasswordVisible)),
-                StumediaTextField(controller: _confirmPasswordController, hintText: 'Şifre Tekrar', icon: Icons.lock_clock, isPassword: true, isVisible: _isPasswordVisible),
+                mobileTextField(controller: _emailController, hintText: 'E-posta Adresi', icon: Icons.email_outlined, keyboardType: TextInputType.emailAddress),
+                mobileTextField(controller: _passwordController, hintText: 'Şifre', icon: Icons.lock_outline, isPassword: true, isVisible: _isPasswordVisible, onVisibilityToggle: () => setState(() => _isPasswordVisible = !_isPasswordVisible)),
+                mobileTextField(controller: _confirmPasswordController, hintText: 'Şifre Tekrar', icon: Icons.lock_clock, isPassword: true, isVisible: _isPasswordVisible),
 
                 SizedBox(height: 24),
                 SizedBox(

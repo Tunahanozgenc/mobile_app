@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mobile_app/screens/home/widgets/emergency_slider.dart+.dart';
 import 'package:mobile_app/screens/notifications/bildirimler_screen.dart';
 import '../../core/constants/app_colors.dart';
-import '../../widgets/campus_feed_card.dart'; // Yeni Widget
+import '../../widgets/campus_feed_card.dart';
 
 
 class AnasayfaScreen extends StatefulWidget {
@@ -16,7 +16,7 @@ class _AnasayfaScreenState extends State<AnasayfaScreen> {
   String _secilenKategori = "Tümü";
   bool _sadeceAciklar = false;
 
-  final List<String> _kategoriler = [
+  final List<String> _kategoriler = [//kategoriler kısmı (türler)
     "Tümü", "Sağlık", "Güvenlik", "Teknik", "Çevre", "Kayıp-Buluntu"
   ];
 
@@ -27,7 +27,6 @@ class _AnasayfaScreenState extends State<AnasayfaScreen> {
       body: CustomScrollView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         slivers: [
-          // 1. APPBAR
           SliverAppBar(
             expandedHeight: 120,
             floating: true,
@@ -67,10 +66,10 @@ class _AnasayfaScreenState extends State<AnasayfaScreen> {
             ],
           ),
 
-          // 2. ACİL DURUM
+          //Acil durum fonksiyonunu çağırma
           SliverToBoxAdapter(child: EmergencySlider()),
 
-          // 3. FİLTRELER
+          //FİLTRELER
           SliverToBoxAdapter(
             child: Container(
               padding: EdgeInsets.only(top: 10),
@@ -87,8 +86,8 @@ class _AnasayfaScreenState extends State<AnasayfaScreen> {
               ),
               child: Column(
                 children: [
-                  _buildSearchBar(),
-                  _buildCategoryFilter(),
+                  _buildSearchBar(),//arama kutusu
+                  _buildCategoryFilter(),//filtreleme
                   _buildStatusSwitch(),
                   SizedBox(height: 15),
                 ],
@@ -96,7 +95,7 @@ class _AnasayfaScreenState extends State<AnasayfaScreen> {
             ),
           ),
 
-          // 4. LİSTE
+          //LİSTE
           _buildBildirimListesi(),
           SliverToBoxAdapter(child: SizedBox(height: 100)),
         ],

@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 import '../constants/app_colors.dart';
 
-class AppTheme {
+class AppTheme {//uygulama temaları tanımlama
   static ThemeData get lightTheme {
     return ThemeData(
       primaryColor: AppColors.primary,
       scaffoldBackgroundColor: AppColors.background,
-
       appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.surface,
         elevation: 0,
         centerTitle: true,
         iconTheme: IconThemeData(color: Colors.black),
-        titleTextStyle: TextStyle(
+        titleTextStyle: TextStyle(//başlık stilini tanımlama
           color: AppColors.textPrimary,
           fontSize: 18,
           fontWeight: FontWeight.bold,
         ),
       ),
 
-      inputDecorationTheme: InputDecorationTheme(
+      inputDecorationTheme: InputDecorationTheme(//girdi stilini tanımlama
         filled: true,
         fillColor: Colors.white,
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),

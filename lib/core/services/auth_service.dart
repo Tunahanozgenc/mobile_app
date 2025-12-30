@@ -57,7 +57,6 @@ class AuthService {
     }
   }
 
-  //KULLANICI ROLÜNÜ GETİR
   Future<String> getUserRole(User user) async {
     try {
       //Admins tablosunu kontrol et --->  admin giriş için kullanılacak
@@ -102,11 +101,11 @@ class AuthService {
     }
   }
 
-  Future<void> signOut() async {
+  Future<void> signOut() async {//çıkış işlemi
     await _auth.signOut();
   }
 
-  String _hataMesajiCevir(String code) {
+  String _hataMesajiCevir(String code) {//hata mesajlarını gönderme işlemleri
     switch (code) {
       case 'user-not-found': return 'Bu e-posta ile kayıtlı kullanıcı bulunamadı.';
       case 'wrong-password': return 'Girdiğiniz şifre yanlış.';

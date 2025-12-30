@@ -3,7 +3,7 @@ import '../../core/constants/app_colors.dart';
 import '../../widgets/stumedia_text_field.dart';
 import '../../core/services/auth_service.dart';
 
-class GirisScreen extends StatefulWidget {
+class GirisScreen extends StatefulWidget {//Giriş ekranı
   @override
   _GirisScreenState createState() => _GirisScreenState();
 }
@@ -22,12 +22,11 @@ class _GirisScreenState extends State<GirisScreen> {
     String email = _emailController.text.trim();
     String password = _passwordController.text.trim();
 
-    // Validasyon
-    if (email.isEmpty) { _showError("E-posta adresi boş bırakılamaz."); return; }
-    if (!email.contains('@')) { _showError("Geçerli bir e-posta girin."); return; }
-    if (password.isEmpty) { _showError("Şifrenizi girmeyi unuttunuz."); return; }
+    if (email.isEmpty) { _showError("E-posta adresi boş bırakılamaz."); return; }//hata mesajları e-posta yoksa
+    if (!email.contains('@')) { _showError("Geçerli bir e-posta girin."); return; }//hata mesajları @ yoksa
+    if (password.isEmpty) { _showError("Şifrenizi girmeyi unuttunuz."); return; }//hata mesajları şifre yoksa
 
-    setState(() => _isLoading = true);
+    setState(() => _isLoading = true);//yüklenme
 
     // Servis Çağrısı
     String? hata = await _authService.signIn(email, password);
@@ -92,12 +91,13 @@ class _GirisScreenState extends State<GirisScreen> {
                   ),
                 ),
                 SizedBox(height: 24),
+                //giriş başlığı
                 Text('Tekrar Hoş Geldin!', textAlign: TextAlign.center, style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: AppColors.textPrimary)),
                 Text('Kampüs hayatına giriş yap.', textAlign: TextAlign.center, style: TextStyle(fontSize: 16, color: AppColors.textSecondary)),
                 SizedBox(height: 40),
 
-                StumediaTextField(controller: _emailController, hintText: 'E-posta Adresi', icon: Icons.email_outlined, keyboardType: TextInputType.emailAddress),
-                StumediaTextField(
+                mobileTextField(controller: _emailController, hintText: 'E-posta Adresi', icon: Icons.email_outlined, keyboardType: TextInputType.emailAddress),
+                mobileTextField(
                   controller: _passwordController, hintText: 'Şifre', icon: Icons.lock_outline, isPassword: true, isVisible: _isPasswordVisible,
                   onVisibilityToggle: () => setState(() => _isPasswordVisible = !_isPasswordVisible),
                 ),
